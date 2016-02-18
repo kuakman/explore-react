@@ -1,0 +1,29 @@
+{
+  "name": "explore-react",
+  "description": "React Personal Playground",
+  "main": "run.js",
+  "authors": [
+    "Patricio Ferreira <3dimentionar@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "ReactJs",
+    "playground"
+  ],
+  "homepage": "https://github.com/kuakman/explore-react",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "~0.14.7",
+    "requirejs": "~2.1.x",
+    "require-css": "0.1.x",
+    "text": "~2.0.14"
+  }
+}

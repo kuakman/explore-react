@@ -1,2 +1,2 @@
-# explore-react
-Exploring React Capabilities
+# Exploring ReactJS from Facebook
+React Playground
