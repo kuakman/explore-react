@@ -1,16 +1,12 @@
 /**
 *	RequireJs Config
 **/
-reqiurejs.config({
+requirejs.config({
 
 	baseUrl: '/',
 
-	paths: {
+	paths: {},
 
-	},
-
-	shim: {
-
-	}
+	shim: {}
 
 });

@@ -3,6 +3,7 @@ var path = require('path'),
 	clean = require('gulp-clean'),
 	concat = require('gulp-concat'),
 	bower = require('gulp-bower'),
+	babel = require('gulp-babel'),
 	less = require('gulp-less'),
 	jsx = require('gulp-jsx'),
 	ejs = require('gulp-ejs-precompiler'),
@@ -11,7 +12,7 @@ var path = require('path'),
 // Clean Tasks
 
 gulp.task('clean', function() {
-	return gulp.src(['dist/js'], { read: false })
+	return gulp.src(['dist/**/*.js', '!dist/libs'], { read: false })
 		.pipe(clean());
 });
 
@@ -30,25 +31,25 @@ gulp.task('clean-ejs', function() {
 		.pipe(clean());
 });
 
-gulp.task('clean-ejs', function() {
+gulp.task('clean-html', function() {
 	return gulp.src(['dist/**/*.html', '!dist/libs'], { read: false })
 		.pipe(clean());
 });
 
 // Build Tasks
 
-gulp.task('dependencies', function() {
+gulp.task('dependencies', ['clean'], function() {
 	return bower({ directory: './dist/libs' });
 });
 
-gulp.task('css', ['clean-css'], function() {
-	return gulp.src('src/css/**/*.less')
+gulp.task('css', ['babel', 'clean-css'], function() {
+	return gulp.src('./src/css/**/*.less')
 		.pipe(less())
 		.pipe(gulp.dest('./dist/css'));
 });
 
-gulp.task('ejs', ['clean-ejs'], function() {
-	return gulp.src('src/partials/*.*')
+gulp.task('ejs', ['css', 'clean-ejs'], function() {
+	return gulp.src('./src/partials/*.*')
 		.pipe(ejs({
 			templateVarName: 'html',
 			compileDebug: true,
@@ -58,22 +59,23 @@ gulp.task('ejs', ['clean-ejs'], function() {
 		.pipe(gulp.dest('./dist/partials'))
 });
 
-gulp.task('html' ['clean-html'], function() {
-	return gulp.src('./src/**/*.html')
-		.pipe(extender({ annotations: true, verbose: false }))
+gulp.task('html', ['ejs', 'clean-html'], function() {
+	return gulp.src(['./src/**/*.html', '!./src/master.html'])
+		.pipe(html({ annotations: false, verbose: false }))
 		.pipe(gulp.dest('./dist'));
 });
 
-gulp.task('babel', function() {
-	return gulp.src('src/**/*.es6')
+gulp.task('babel', ['dependencies'], function() {
+	return gulp.src(['./src/**/*.es6', './src/config.js'])
 		.pipe(jsx({
 			factory: 'React.createClass'
 		}))
 		.pipe(babel({
-			presets: ['es2015'],
+			only: /\.es6$/,
+			presets: ['react', 'es2015'],
 			plugins: ['transform-es2015-modules-amd']
 		}))
-		.pipe(gulp.dest('./dist/js'));
+		.pipe(gulp.dest('./dist'));
 });
 
 gulp.task('build', ['clean', 'dependencies', 'babel', 'css', 'ejs', 'html']);
