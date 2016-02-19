@@ -6,7 +6,7 @@ var path = require('path'),
 	babel = require('gulp-babel'),
 	less = require('gulp-less'),
 	jsx = require('gulp-jsx'),
-	ejs = require('gulp-ejs-precompiler'),
+	jade = require('gulp-jade'),
 	html = require('gulp-html-extend');
 
 // Clean Tasks
@@ -26,8 +26,8 @@ gulp.task('clean-css', function() {
 		.pipe(clean());
 });
 
-gulp.task('clean-ejs', function() {
-	return gulp.src(['./dist/partials/**/*.*'], { read: false })
+gulp.task('clean-jade', function() {
+	return gulp.src(['./dist/partials/**/*.jade'], { read: false })
 		.pipe(clean());
 });
 
@@ -48,18 +48,14 @@ gulp.task('css', ['babel', 'clean-css'], function() {
 		.pipe(gulp.dest('./dist/css'));
 });
 
-gulp.task('ejs', ['css', 'clean-ejs'], function() {
-	return gulp.src('./src/partials/*.*')
-		.pipe(ejs({
-			templateVarName: 'html',
-			compileDebug: true,
-			client: true
-		}))
-		.pipe(concat('templates.js'))
+gulp.task('jade', ['css', 'clean-jade'], function() {
+	return gulp.src('./src/partials/**/*.jade')
+		.pipe(jade({ pretty: true }))
+		//.pipe(concat('templates.js'))
 		.pipe(gulp.dest('./dist/partials'))
 });
 
-gulp.task('html', ['ejs', 'clean-html'], function() {
+gulp.task('html', ['jade', 'clean-html'], function() {
 	return gulp.src(['./src/**/*.html', '!./src/master.html'])
 		.pipe(html({ annotations: false, verbose: false }))
 		.pipe(gulp.dest('./dist'));
@@ -78,4 +74,4 @@ gulp.task('babel', ['dependencies'], function() {
 		.pipe(gulp.dest('./dist'));
 });
 
-gulp.task('build', ['clean', 'dependencies', 'babel', 'css', 'ejs', 'html']);
+gulp.task('build', ['clean', 'dependencies', 'babel', 'css', 'jade', 'html']);
