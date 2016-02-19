@@ -12,27 +12,27 @@ var path = require('path'),
 // Clean Tasks
 
 gulp.task('clean', function() {
-	return gulp.src(['dist/**/*.js', '!dist/libs'], { read: false })
+	return gulp.src(['./dist/**/*.js', '!./dist/{libs,libs/**}'], { read: false })
 		.pipe(clean());
 });
 
 gulp.task('clean-dependencies', function() {
-	return gulp.src('dist/libs', { read: false })
+	return gulp.src('./dist/libs', { read: false })
 		.pipe(clean());
 });
 
 gulp.task('clean-css', function() {
-	return gulp.src(['dist/css', '!dist/libs'], { read: false })
+	return gulp.src(['./dist/css', '!./dist/{libs,libs/**}'], { read: false })
 		.pipe(clean());
 });
 
 gulp.task('clean-ejs', function() {
-	return gulp.src(['dist/partials/**/*.*', '!dist/libs'], { read: false })
+	return gulp.src(['./dist/partials/**/*.*'], { read: false })
 		.pipe(clean());
 });
 
 gulp.task('clean-html', function() {
-	return gulp.src(['dist/**/*.html', '!dist/libs'], { read: false })
+	return gulp.src(['./dist/**/*.html', '!./dist/{libs,libs/**}'], { read: false })
 		.pipe(clean());
 });
 
