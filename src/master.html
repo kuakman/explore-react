@@ -1,18 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>Title</title>
+	<title>Explore React - <!-- @@var title --></title>
 	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script type="text/javascript" src="/libs/requirejs/require.js"></script>
 	<link rel="stylesheet" href="/css/main.css" />
 	<!-- @@placeholder = js -->
 	<!-- @@placeholder = css -->
 </head>
 
-<body>
+<body class="container">
 	<script type="text/javascript">
 		require(['/config.js'], function() {
-			<!-- @@placeholder = amdpage -->
+			require(['bootstrap', 'css!bootstrapCSS'], function() {
+				<!-- @@placeholder = module -->
+			});
 		});
 	</script>
 </body>

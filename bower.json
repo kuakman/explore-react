@@ -24,6 +24,8 @@
     "react": "~0.14.7",
     "requirejs": "~2.1.x",
     "require-css": "0.1.x",
-    "text": "~2.0.14"
+    "text": "~2.0.14",
+    "bootstrap": "~3.3.6",
+    "jquery": "~2.2.0"
   }
 }
