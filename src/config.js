@@ -9,6 +9,7 @@ requirejs.config({
 	paths: {
 		react: 'libs/react/react.min',
 		reactDOM: 'libs/react/react-dom.min',
+		flux: 'libs/flux/dist/Flux.min',
 		jquery: 'libs/jquery/dist/jquery.min',
 		bootstrap: 'libs/bootstrap/dist/js/bootstrap.min',
 		bootstrapCSS: 'libs/bootstrap/dist/css/bootstrap.min',
@@ -17,7 +18,8 @@ requirejs.config({
 	},
 
 	shim: {
-		bootstrap: ['jquery']
+		bootstrap: ['jquery'],
+		flux: ['react']
 	}
 
 });
