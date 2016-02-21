@@ -1,7 +1,7 @@
 /**
 *	Require Custom JSX Loader
 **/
-define(['module', 'underscore', 'react'], function(module, _, React) {
+define(['module', 'react'], function(module, React) {
 
 	var jsx = {
 

@@ -1,37 +1,35 @@
 /**
-*	@module view.home
+*	@module home
 *	@author Patricio Ferreira <3dimentionar@gmail.com>
 **/
+
 import React from 'react';
-import ReactDOM from 'reactDOM';
+import {Page} from 'common/page';
 import HomeJSX from 'jsx!partials/home/home';
 
 /**
 *	Class HomePage
-*	@namespace view.home
-*	@class view.home.HomePage
-*	@extends React.Component
+*	@namespace home
+*	@class home.HomePage
+*	@extends common.Page
 *
-*	@requires React
-*	@requires ReactDOM
-*	@requires jquery
-*	@requires partials.HomeHTML
+*	@requires common.Page
+*	@requires partials.home.HomeJSX
 **/
-export class HomePage extends React.Component {
+export class HomePage extends Page {
 
 	/**
-	*	Render Component
-	*	@public
-	*	@method render
-	*	@return view.home.HomePage
+	*	Constructor
+	*	@constructor
 	**/
-	render() {
-		return HomeJSX();
+	constructor() {
+		super({ template: HomeJSX });
 	}
 
 	/**
 	*	DisplayName
 	*	@public
+	*	@override
 	*	@property displayName
 	*	@type String
 	**/
@@ -42,11 +40,12 @@ export class HomePage extends React.Component {
 	/**
 	*	Static Component Bootstrap
 	*	@static
+	*	@override
 	*	@method bootstrap
 	*	@return
 	**/
 	static bootstrap() {
-		return ReactDOM.render(<HomePage />, $('body div.main')[0]);
+		Page.bootstrap(<HomePage />);
 	}
 
 }

@@ -2,7 +2,7 @@
 *	Underscore Mixins
 *	@author Patricio Ferreira <3dimentionar@gmail.com>
 **/
-define(['jsx'], function() {
+define(['underscore'], function() {
 
 	_.mixin({
 
