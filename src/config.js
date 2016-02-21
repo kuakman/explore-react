@@ -7,7 +7,7 @@ requirejs.config({
 	baseUrl: '/',
 
 	paths: {
-		react: 'libs/react/react',
+		react: 'libs/react/react.min',
 		reactDOM: 'libs/react/react-dom.min',
 		flux: 'libs/flux/dist/Flux.min',
 

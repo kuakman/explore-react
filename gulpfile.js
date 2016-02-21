@@ -12,6 +12,7 @@ var path = require('path'),
 	jsx = require('gulp-jsx'),
 	jade = require('gulp-jade'),
 	connect = require('gulp-connect'),
+	favicon = require('serve-favicon'),
 	compression = require('compression');
 
 // Clean Tasks
@@ -111,10 +112,10 @@ gulp.task('build', ['clean', 'dependencies', 'babel', 'css', 'html']);
 gulp.task('serve', function() {
 	connect.server({
 		root: './dist',
-		port: 9393,
+		port: 9494,
 		livereload: false,
 		middleware: function() {
-			return [compression()];
+			return [compression(), favicon(__dirname + '/src/favicon.ico', { maxAge: 1000 })];
 		}
 	});
 });
@@ -122,10 +123,10 @@ gulp.task('serve', function() {
 gulp.task('serve-live', function() {
 	connect.server({
 		root: './dist',
-		port: 9393,
+		port: 9494,
 		livereload: true,
 		middleware: function() {
-			return [compression()];
+			return [compression(), favicon(__dirname + '/src/favicon.ico', { maxAge: 1000 })];
 		}
 	});
 });
