@@ -1,32 +1,34 @@
 {
-  "name": "explore-react",
-  "description": "React Personal Playground",
-  "main": "run.js",
-  "authors": [
-    "Patricio Ferreira <3dimentionar@gmail.com>"
-  ],
-  "license": "MIT",
-  "keywords": [
-    "ReactJs",
-    "playground"
-  ],
-  "homepage": "https://github.com/kuakman/explore-react",
-  "moduleType": [],
-  "private": true,
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
-  "dependencies": {
-    "react": "~0.14.7",
-    "flux": "~2.1.1",
-    "requirejs": "~2.1.x",
-    "require-css": "0.1.x",
-    "text": "~2.0.14",
-    "bootstrap": "~3.3.6",
-    "jquery": "~2.2.0"
-  }
+    "name": "explore-react",
+    "description": "React Personal Playground",
+    "main": "run.js",
+    "authors": [
+        "Patricio Ferreira <3dimentionar@gmail.com>"
+    ],
+    "license": "MIT",
+    "keywords": [
+        "ReactJs",
+        "playground"
+    ],
+    "homepage": "https://github.com/kuakman/explore-react",
+    "moduleType": [],
+    "private": true,
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "react": "~0.14.7",
+        "flux": "~2.1.1",
+        "requirejs": "~2.1.x",
+        "require-css": "0.1.x",
+        "text": "~2.0.14",
+        "bootstrap": "~3.3.6",
+        "jquery": "~2.2.0",
+        "underscore": "~1.8.x",
+        "underscore.string": "~3.2.x"
+    }
 }
