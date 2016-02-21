@@ -15,6 +15,15 @@ var path = require('path'),
 	favicon = require('serve-favicon'),
 	compression = require('compression');
 
+// experiment
+var jsxt = require('jsx-transform');
+
+gulp.task('test', function() {
+	console.log(jsxt.fromString('<h1 className={"hello" + this.state.hello}>{this.props.state}</h1>', {
+		factory: 'React.createElement'
+	}));
+});
+
 // Clean Tasks
 
 gulp.task('clean', function() {

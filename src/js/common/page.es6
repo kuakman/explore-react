@@ -4,6 +4,7 @@
 **/
 import React from 'react';
 import ReactDOM from 'reactDOM';
+import _ from 'underscore';
 
 /**
 *	Class Page
@@ -19,9 +20,10 @@ export class Page extends React.Component {
 	/**
 	*	@constructor
 	**/
-	constructor(attrs = {}) {
+	constructor(attrs = { state: {} }) {
 		super();
 		this.template = attrs.template;
+		this.state = _.extend({ style: 'bg-default' }, attrs.state);
 	}
 
 	/**

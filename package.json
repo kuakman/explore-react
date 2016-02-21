@@ -35,6 +35,7 @@
     "istanbul": "~0.3.18",
     "jade": "^1.11.0",
     "jscoverage": "~0.3.7",
+    "jsx-transform": "^2.3.0",
     "karma": "0.13.x",
     "karma-babel-preprocessor": "6.0.x",
     "karma-coverage": "~0.5.3",

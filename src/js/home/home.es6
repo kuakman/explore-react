@@ -16,14 +16,17 @@ import HomeJSX from 'jsx!partials/home/home';
 *	@requires common.Page
 *	@requires partials.home.HomeJSX
 **/
-export class HomePage extends Page {
+export default class HomePage extends Page {
 
 	/**
 	*	Constructor
 	*	@constructor
 	**/
 	constructor() {
-		super({ template: HomeJSX });
+		super({
+			template: HomeJSX,
+			state: { style: 'bg-primary' }
+		});
 	}
 
 	/**
@@ -45,7 +48,7 @@ export class HomePage extends Page {
 	*	@return
 	**/
 	static bootstrap() {
-		Page.bootstrap(<HomePage />);
+		Page.bootstrap(<HomePage name="Home" />);
 	}
 
 }

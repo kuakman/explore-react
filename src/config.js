@@ -36,4 +36,6 @@ requirejs.config({
 		flux: ['react']
 	}
 
-});
+}).onError = function(err) {
+	console.error(err);
+}
