@@ -19,26 +19,31 @@ var path = require('path'),
 
 gulp.task('clean', function() {
 	return gulp.src(['./dist/**/*.js', '!./dist/{libs,libs/**}'], { read: false })
+		.on('error', function() { this.emit('end'); })
 		.pipe(clean());
 });
 
 gulp.task('clean-dependencies', function() {
 	return gulp.src('./dist/libs', { read: false })
+		.on('error', function() { this.emit('end'); })
 		.pipe(clean());
 });
 
 gulp.task('clean-css', function() {
 	return gulp.src(['./dist/css'], { read: false })
+		.on('error', function() { this.emit('end'); })
 		.pipe(clean());
 });
 
 gulp.task('clean-jsx', function() {
 	return gulp.src(['./dist/partials'], { read: false })
+		.on('error', function() { this.emit('end'); })
 		.pipe(clean());
 });
 
 gulp.task('clean-html', function() {
 	return gulp.src(['./dist/html'], { read: false })
+		.on('error', function() { this.emit('end'); })
 		.pipe(clean());
 });
 
@@ -61,6 +66,7 @@ gulp.task('dependencies', ['clean', 'babel-polyfill', 'babel-helpers'], function
 
 gulp.task('css', ['babel', 'clean-css'], function() {
 	return gulp.src('./src/styles/**/*.less')
+		.on('error', function() { this.emit('end'); })
 		.pipe(less())
 		.pipe(gulp.dest('./dist/styles'))
 		.pipe(connect.reload());
@@ -68,20 +74,22 @@ gulp.task('css', ['babel', 'clean-css'], function() {
 
 gulp.task('jade-jsx', ['clean-jsx'], function() {
 	return gulp.src('./src/partials/**/*.jade')
+		.on('error', function() { this.emit('end'); })
 		.pipe(jade())
-		.on('error', function () { console.log(arguments); })
 		.pipe(rename({ extname: ".jsx" }))
 		.pipe(gulp.dest('./src/.tmp'));
 });
 
 gulp.task('jsx', ['jade-jsx'], function() {
 	return gulp.src('./src/.tmp/**/*.jsx')
+		.on('error', function() { this.emit('end'); })
 		.pipe(jsx({ factory: 'React.createElement' }))
 		.pipe(gulp.dest('./dist/partials'));
 });
 
 gulp.task('clean-tmp-jsx', ['jsx'], function() {
-	return gulp.src('./src/.tmp', { read: false, force: true })
+	return gulp.src('./src/.tmp', { force: true, read: false })
+		.on('error', function() { this.emit('end'); })
 		.pipe(clean())
 		.pipe(connect.reload());
 });
