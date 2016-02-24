@@ -4,8 +4,7 @@
 **/
 
 import React from 'react';
-import {Page} from 'common/page';
-import HomeJSX from 'jsx!partials/home/home';
+import {Page} from 'common/ui/page';
 
 /**
 *	Class HomePage
@@ -13,20 +12,31 @@ import HomeJSX from 'jsx!partials/home/home';
 *	@class home.HomePage
 *	@extends common.Page
 *
-*	@requires common.Page
+*	@requires common.ui.Page
 *	@requires partials.home.HomeJSX
 **/
 export default class HomePage extends Page {
 
 	/**
-	*	Constructor
 	*	@constructor
 	**/
 	constructor() {
-		super({
-			template: HomeJSX,
-			state: { style: 'bg-primary' }
-		});
+		super({ state: { style: 'bg-primary' } });
+	}
+
+	/**
+	*	Retrieves Page content
+	*	@public
+	*	@property content
+	*	@type Object
+	**/
+	get content() {
+		return (
+			<div className = "content col-xs-12">
+				<h4 className = "text-center">{this.props.name}</h4>
+			    <p className = "text-center col-xs-12">ReactJS</p>
+			</div>
+		);
 	}
 
 	/**

@@ -16,10 +16,8 @@ requirejs.config({
 		bootstrapCSS: '/libs/bootstrap/dist/css/bootstrap.min',
 		underscore: '/libs/underscore/underscore-min',
 		underscore_string: '/libs/underscore.string/dist/underscore.string.min',
-		jsx: 'helpers/jsx',
-		mixins: 'helpers/mixins',
+		mixins: 'common/util/mixins',
 		styles: '/styles',
-		partials: '/partials',
 
 		babelpolyfill: '/libs/babel/polyfill.min',
 		babelhelpers: '/libs/babel/helpers',
@@ -31,7 +29,7 @@ requirejs.config({
 		underscore_string: ['underscore'],
 		jquery: ['underscore_string'],
 		mixins: ['jquery'],
-		bootstrap: ['mixins', 'jsx', 'jquery'],
+		bootstrap: ['mixins', 'jquery'],
 		react: ['babelhelpers', 'babelpolyfill'],
 		flux: ['react']
 	}

@@ -5,6 +5,8 @@
 import React from 'react';
 import ReactDOM from 'reactDOM';
 import _ from 'underscore';
+import {Header} from 'common/header/header';
+import {Footer} from 'common/footer/footer';
 
 /**
 *	Class Page
@@ -14,46 +16,44 @@ import _ from 'underscore';
 *
 *	@requires React
 *	@requires ReactDOM
+*	@requires underscore
+*	@requires common.header.Header
+*	@requires common.footer.Footer
 **/
 export class Page extends React.Component {
 
 	/**
 	*	@constructor
 	**/
-	constructor(attrs = { state: {} }) {
+	constructor(attrs = {}) {
 		super();
-		this.template = attrs.template;
-		this.state = _.extend({ style: 'bg-default' }, attrs.state);
+		this.state = _.extend({ style: 'bg-primary' }, attrs.state);
 	}
 
 	/**
 	*	Render Component
 	*	@public
 	*	@method render
-	*	@return common.Page
+	*	@return Object
 	**/
 	render() {
-		return this._template();
+		return (
+			<div className = "main container-fluid page">
+				<Header name = {this.props.name} state = {this.state} />
+				{this.content}
+				<Footer state = {this.state} />
+			</div>
+		);
 	}
 
 	/**
-	*	Get Template
+	*	Retrieves Page content
 	*	@public
-	*	@property template
-	*	@type Function
+	*	@property content
+	*	@type Object
 	**/
-	get template() {
-		return this._template;
-	}
-
-	/**
-	*	Set Template
-	*	@public
-	*	@property template
-	*	@type Function
-	**/
-	set template(template) {
-		this._template = template;
+	get content() {
+		return '';
 	}
 
 	/**
@@ -73,7 +73,7 @@ export class Page extends React.Component {
 	*	@param [component] {React.Component} page component to be render
 	*	@return
 	**/
-	static bootstrap(component = <Page />) {
+	static bootstrap(component = <Page name="Page" />) {
 		return ReactDOM.render(component, $('body')[0]);
 	}
 
