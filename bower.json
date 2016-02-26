@@ -23,6 +23,7 @@
     "dependencies": {
         "react": "~0.14.7",
         "flux": "~2.1.1",
+        "immutable": "~3.x",
         "requirejs": "~2.1.x",
         "require-css": "0.1.x",
         "text": "~2.0.14",

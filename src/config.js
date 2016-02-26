@@ -10,13 +10,14 @@ requirejs.config({
 		react: '/libs/react/react.min',
 		reactDOM: '/libs/react/react-dom.min',
 		flux: '/libs/flux/dist/Flux.min',
+		immutable: '/libs/immutable/dist/immutable.min',
 
 		jquery: '/libs/jquery/dist/jquery.min',
 		bootstrap: '/libs/bootstrap/dist/js/bootstrap.min',
 		bootstrapCSS: '/libs/bootstrap/dist/css/bootstrap.min',
 		underscore: '/libs/underscore/underscore-min',
 		underscore_string: '/libs/underscore.string/dist/underscore.string.min',
-		mixins: 'common/util/mixins',
+		mixins: 'util/mixins',
 		styles: '/styles',
 
 		babelpolyfill: '/libs/babel/polyfill.min',

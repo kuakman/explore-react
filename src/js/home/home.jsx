@@ -1,27 +1,30 @@
 /**
+*	@flow
 *	@module home
 *	@author Patricio Ferreira <3dimentionar@gmail.com>
 **/
 
 import React from 'react';
-import {Page} from 'common/ui/page';
+import {Page} from 'ui/page/page';
+import {HomeStore} from 'home/store/home-store';
 
 /**
 *	Class HomePage
 *	@namespace home
 *	@class home.HomePage
-*	@extends common.Page
+*	@extends ui.page.Page
 *
-*	@requires common.ui.Page
-*	@requires partials.home.HomeJSX
+*	@requires React
+*	@requires ui.page.Page
+*	@requires home.store.HomeStore
 **/
-export default class HomePage extends Page {
+export class HomePage extends Page {
 
 	/**
 	*	@constructor
 	**/
 	constructor() {
-		super({ state: { style: 'bg-primary' } });
+		super({ store: new HomeStore() });
 	}
 
 	/**
@@ -30,7 +33,7 @@ export default class HomePage extends Page {
 	*	@property content
 	*	@type Object
 	**/
-	get content() {
+	get content(): Object {
 		return (
 			<div className = "content col-xs-12">
 				<h4 className = "text-center">{this.props.name}</h4>
@@ -40,13 +43,35 @@ export default class HomePage extends Page {
 	}
 
 	/**
+	*	Component Mounting
+	*	@public
+	*	@override
+	*	@method componentDidMount
+	*	@return home.HomePage
+	**/
+	componentDidMount(): home.HomePage {
+		return super.componentDidMount();
+	}
+
+	/**
+	*	Component Unmounting
+	*	@public
+	*	@override
+	*	@method componentWillUnmount
+	*	@return home.HomePage
+	**/
+	componentWillUnmount(): home.HomePage {
+		return super.componentWillUnmount();
+	}
+
+	/**
 	*	DisplayName
 	*	@public
 	*	@override
 	*	@property displayName
 	*	@type String
 	**/
-	get displayName() {
+	get displayName(): String {
 		return 'HomePage';
 	}
 
@@ -55,7 +80,6 @@ export default class HomePage extends Page {
 	*	@static
 	*	@override
 	*	@method bootstrap
-	*	@return
 	**/
 	static bootstrap() {
 		Page.bootstrap(<HomePage name="Home" />);

@@ -1,5 +1,6 @@
 /**
-*	@module common.header
+*	@flow
+*	@module ui.page.header
 *	@author Patricio Ferreira <3dimentionar@gmail.com>
 **/
 
@@ -8,8 +9,8 @@ import ReactDOM from 'reactDOM';
 
 /**
 *	Class Header
-*	@namespace common.header
-*	@class common.header.Header
+*	@namespace ui.page.header
+*	@class ui.page.header.Header
 *	@extends React.Component
 *
 *	@requires React
@@ -21,9 +22,9 @@ export class Header extends React.Component {
 	*	@constructor
 	*	@param [attrs] {Object} constructor attributes
 	**/
-	constructor(attrs = {}) {
+	constructor(attrs = { store: {} } : Object) {
 		super();
-		this.state = _.extend({ style: '' }, attrs.state);
+		this.store = attrs.store;
 	}
 
 	/**
@@ -35,7 +36,7 @@ export class Header extends React.Component {
 	**/
 	render() {
 		return (
-			<div className = {'header col-xs-12 ' + this.state.style }>
+			<div className = {'header col-xs-12 ' + this.store.styles}>
 				<h2 className = "text-center">{this.props.name}</h2>
 			</div>
 		);
@@ -47,7 +48,7 @@ export class Header extends React.Component {
 	*	@property displayName
 	*	@type String
 	**/
-	get displayName() {
+	get displayName(): String {
 		return 'Header';
 	}
 

@@ -72,9 +72,9 @@ gulp.task('css', ['clean-css'], function() {
 });
 
 gulp.task('babel', ['clean-babel'], function() {
-	return gulp.src(['./src/**/*.es6', './src/**/*.js'])
+	return gulp.src('./src/**/{*.jsx,*.js,*.es6}')
 		.pipe(babel({
-			only: /\.es6$/,
+			only: /(\.es6|\.jsx)$/,
 			comments: false,
 			presets: ['react', 'es2015'],
 			plugins: [['transform-es2015-modules-amd', { strict: true }], 'external-helpers']
@@ -117,7 +117,7 @@ gulp.task('serve-live', function() {
 });
 
 gulp.task('watch-babel', function() {
-	gulp.watch(['./src/**/{*.es6,*.js}'], ['babel']);
+	gulp.watch(['./src/**/{*.es6,*.js,*.jsx}'], ['babel']);
 });
 
 gulp.task('watch-css', function() {

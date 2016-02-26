@@ -1,5 +1,6 @@
 /**
-*	@module common.ui.list
+*	@flow
+*	@module ui.list
 *	@author Patricio Ferreira <3dimentionar@gmail.com>
 **/
 
@@ -7,23 +8,20 @@ import React from 'react';
 
 /**
 *	Class List
-*	@namespace common.ui.list
-*	@class common.ui.list.List
+*	@namespace ui.list
+*	@class ui.list.List
 *	@extends React.Component
 *
 *	@requires React
-*	@requires ReactDOM
 **/
 export class List extends React.Component {
 
 	/**
 	*	@constructor
-	*	@method constructor
 	*	@param [attrs] {Object} constructor attributes
 	**/
-	constructor() {
+	constructor(attrs = {}) {
 		super();
-		this.template = <ul className={this.props.className}></ul>;
 	}
 
 	/**
@@ -33,17 +31,19 @@ export class List extends React.Component {
 	*	@return Object
 	**/
 	render() {
-		return this.template();
+		return (
+			<ul className = "list-group">{this.content}</ul>
+		);
 	}
 
 	/**
-	*	Get ClassName
+	*	Retrieve Content
 	*	@public
-	*	@property className
-	*	@type String
+	*	@property content
+	*	@type Object
 	**/
-	get className() {
-		return 'list-group';
+	get content() {
+		return {};
 	}
 
 	/**

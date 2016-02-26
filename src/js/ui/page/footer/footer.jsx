@@ -1,5 +1,6 @@
 /**
-*	@module common.footer
+*	@flow
+*	@module ui.page.footer
 *	@author Patricio Ferreira <3dimentionar@gmail.com>
 **/
 
@@ -8,8 +9,8 @@ import ReactDOM from 'reactDOM';
 
 /**
 *	Class Footer
-*	@namespace common.footer
-*	@class common.footer.Footer
+*	@namespace ui.page.footer
+*	@class ui.page.footer.Footer
 *	@extends React.Component
 *
 *	@requires React
@@ -21,9 +22,9 @@ export class Footer extends React.Component {
 	*	@constructor
 	*	@param [attrs] {Object} constructor attributes
 	**/
-	constructor(attrs = { state: {} }) {
+	constructor(attrs = { store: {} } : Object) {
 		super();
-		this.state = _.extend({}, attrs.state);
+		this.store = attrs.store;
 	}
 
 	/**
@@ -35,7 +36,7 @@ export class Footer extends React.Component {
 	**/
 	render() {
 		return (
-			<div className = {'footer col-xs-12 ' + this.state.style}>
+			<div className = {'footer col-xs-12 ' + this.store.styles}>
 				<p className = "text-center">Powered by ReactJS/JSX</p>
 			</div>
 		);
@@ -47,7 +48,7 @@ export class Footer extends React.Component {
 	*	@property displayName
 	*	@type String
 	**/
-	get displayName() {
+	get displayName(): String {
 		return 'Footer';
 	}
 
