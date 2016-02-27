@@ -15,20 +15,8 @@ define(['underscore', 'jquery'], function() {
 		**/
 		def: function(o) {
 			return (!_.isNull(o) && !_.isUndefined(o));
-		},
-
-		/**
-		*	Decorate a given object with jquery event system
-		*	@public
-		*	@method events
-		*	@param o {Object} object to decorate
-		*	@return Object
-		**/
-		events: function(o) {
-			return _.def(o) ? _.extend(o, _.pick($.prototype,
-				'on', 'once', 'off', 'trigger', 'each')) : o;
 		}
-
+	
 	});
 
 });
