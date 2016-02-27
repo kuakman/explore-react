@@ -84,7 +84,7 @@ gulp.task('babel', ['clean-babel'], function() {
 });
 
 gulp.task('build', function() {
-	return sequence(
+	sequence(
 		'dependencies',
 		'babel',
 		'css',
@@ -117,20 +117,23 @@ gulp.task('serve-live', function() {
 });
 
 gulp.task('watch-babel', function() {
-	gulp.watch(['./src/**/{*.es6,*.js,*.jsx}'], ['babel']);
+	return gulp.watch(['./src/**/{*.es6,*.js,*.jsx}'], ['babel']);
 });
 
 gulp.task('watch-css', function() {
-	gulp.watch(['./src/styles/**/*.less'], ['css']);
+	return gulp.watch(['./src/styles/**/*.less'], ['css']);
 });
 
 gulp.task('watch-html', function() {
-	gulp.watch(['./src/**/*.jade'], ['html']);
+	return gulp.watch(['./src/**/*.jade'], ['html']);
 });
 
 gulp.task('live', function() {
-	return sequence(
-		['watch-html', 'watch-css', 'watch-babel'],
+	sequence(
+		'build',
+		'watch-html',
+		'watch-css',
+		'watch-babel',
 		'serve-live'
 	);
 });

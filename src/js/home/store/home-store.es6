@@ -4,6 +4,8 @@
 *	@author Patricio Ferreira <3dimentionar@gmail.com>
 **/
 
+import $ from 'jquery'
+import {Store} from 'common/store/store';
 import {HomeDispatcher} from 'home/dispatcher/home-dispatcher';
 import {Map} from 'immutable';
 
@@ -11,28 +13,50 @@ import {Map} from 'immutable';
 *	Class HomeStore
 *	@namespace home.store
 *	@class home.store.HomeStore
-*	@extends flux.utils.Store
+*	@extends common.store.Store
 *
+*	@requires jquery
+*	@requires common.store.Store
 *	@requires home.dispatcher.HomeDispatcher
 *	@requires Immutable.Map
 **/
-export class HomeStore {
+export class HomeStore extends Store {
 
 	/**
 	*	@constructor
+	*	@param [...args] {Object} constructor arguments
 	**/
-	constructor() {
-		this.dispatcher = new HomeDispatcher();
-		this.state = new Map();
+	constructor(...args) {
+		super(HomeDispatcher, Map({ 'items': [
+				{ id: 1, content: 'Item 1' },
+				{ id: 2, content: 'Item 2' },
+				{ id: 3, content: 'Item 3' }]
+			})
+		, ...args);
 	}
 
 	/**
+	*	AddItem Action Handler
 	*	@public
-	*	@property styles
-	*	@type String
+	*	@method onAddItem
+	*	@param payload {Object} payload reference
+	*	@return Array
 	**/
-	get styles(): String {
-		return 'bg-primary';
+	onAddItem(payload) {
+		console.log(`onAddItem(${JSON.stringify(payload)});`);
+		$(this).trigger('change', this.state.get('items'));
+	}
+
+	/**
+	*	RemoveItem Action Handler
+	*	@public
+	*	@method onRemoveItem
+	*	@param payload {Object} payload reference
+	*	@return Array
+	**/
+	onRemoveItem(payload) {
+		console.log(`onRemoveItem(${JSON.stringify(payload)});`);
+		$(this).trigger('change', this.state.get('items'));
 	}
 
 }

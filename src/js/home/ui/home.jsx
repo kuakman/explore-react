@@ -1,22 +1,25 @@
 /**
 *	@flow
-*	@module home
+*	@module home.ui
 *	@author Patricio Ferreira <3dimentionar@gmail.com>
 **/
 
 import React from 'react';
-import {Page} from 'ui/page/page';
 import {HomeStore} from 'home/store/home-store';
+import {HomeAction} from 'home/action/home-action';
+import {Page} from 'ui/page/page';
+import {List} from 'ui/list/list';
 
 /**
 *	Class HomePage
-*	@namespace home
-*	@class home.HomePage
+*	@namespace home.ui
+*	@class home.ui.HomePage
 *	@extends ui.page.Page
 *
 *	@requires React
-*	@requires ui.page.Page
 *	@requires home.store.HomeStore
+*	@requires ui.page.Page
+*	@requires ui.list.List
 **/
 export class HomePage extends Page {
 
@@ -24,7 +27,7 @@ export class HomePage extends Page {
 	*	@constructor
 	**/
 	constructor() {
-		super({ store: new HomeStore() });
+		super({ store: new HomeStore(), action: new HomeAction() });
 	}
 
 	/**
@@ -37,31 +40,22 @@ export class HomePage extends Page {
 		return (
 			<div className = "content col-xs-12">
 				<h4 className = "text-center">{this.props.name}</h4>
-			    <p className = "text-center col-xs-12">ReactJS</p>
+			    <List items = {this.store.state.get('items')} renderer = {this.item} />
 			</div>
 		);
 	}
 
 	/**
-	*	Component Mounting
+	*	List Custom Renderer
 	*	@public
-	*	@override
-	*	@method componentDidMount
-	*	@return home.HomePage
+	*	@method item
+	*	@param it {Object} item reference
+	*	@return Object
 	**/
-	componentDidMount(): home.HomePage {
-		return super.componentDidMount();
-	}
-
-	/**
-	*	Component Unmounting
-	*	@public
-	*	@override
-	*	@method componentWillUnmount
-	*	@return home.HomePage
-	**/
-	componentWillUnmount(): home.HomePage {
-		return super.componentWillUnmount();
+	item(it : Object) : Object {
+		return <a className = "btn btn-link">
+			{it.content}
+		</a>;
 	}
 
 	/**

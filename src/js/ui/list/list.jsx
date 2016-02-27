@@ -5,6 +5,8 @@
 **/
 
 import React from 'react';
+import _ from 'underscore';
+import {ListItem} from 'ui/list/list-item';
 
 /**
 *	Class List
@@ -13,6 +15,8 @@ import React from 'react';
 *	@extends React.Component
 *
 *	@requires React
+*	@requires underscore
+*	@requires ui.list.ListItem
 **/
 export class List extends React.Component {
 
@@ -20,8 +24,8 @@ export class List extends React.Component {
 	*	@constructor
 	*	@param [attrs] {Object} constructor attributes
 	**/
-	constructor(attrs = {}) {
-		super();
+	constructor(...args) {
+		super(...args);
 	}
 
 	/**
@@ -30,20 +34,31 @@ export class List extends React.Component {
 	*	@method render
 	*	@return Object
 	**/
-	render() {
+	render() : Object {
 		return (
 			<ul className = "list-group">{this.content}</ul>
 		);
 	}
 
 	/**
-	*	Retrieve Content
 	*	@public
 	*	@property content
-	*	@type Object
+	*	@type Array
 	**/
-	get content() {
-		return {};
+	get content() : Array {
+		return _.map(this.props.items, function(it) { return this.item(it); }, this);
+	}
+
+	/**
+	*	Default Item Strategy
+	*	@public
+	*	@method item
+	*	@param it {Object} item reference
+	*	@return ui.list.ListItem
+	**/
+	item(it) : Object {
+		return <ListItem key = {it.id}
+			content = {(this.props.renderer) ? this.props.renderer(it) : it.content} />;
 	}
 
 	/**
@@ -52,7 +67,7 @@ export class List extends React.Component {
 	*	@property displayName
 	*	@type String
 	**/
-	get displayName() {
+	get displayName() : String {
 		return 'List';
 	}
 

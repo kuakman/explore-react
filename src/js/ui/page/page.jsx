@@ -5,6 +5,7 @@
 **/
 import React from 'react';
 import ReactDOM from 'reactDOM';
+import $ from 'jquery';
 import {Header} from 'ui/page/header/header';
 import {Footer} from 'ui/page/footer/footer';
 
@@ -25,9 +26,10 @@ export class Page extends React.Component {
 	*	@constructor
 	*	@param [attrs] {Object} constructor attributes
 	**/
-	constructor(attrs = { store: {} } : Object) {
+	constructor(attrs = { store: {} } : Object, action = {} : Object) {
 		super();
-		this.store = attrs.store;
+		this._store = attrs.store;
+		this._action = attrs.action;
 	}
 
 	/**
@@ -36,7 +38,8 @@ export class Page extends React.Component {
 	*	@method componentDidMount
 	*	@return ui.page.Page
 	**/
-	componentDidMount(): ui.page.Page {
+	componentDidMount() : ui.page.Page {
+		$(this.store).on('change', this.onChange);
 		return this;
 	}
 
@@ -46,7 +49,8 @@ export class Page extends React.Component {
 	*	@method componentWillUnmount
 	*	@return ui.page.Page
 	**/
-	componentWillUnmount(): ui.page.Page {
+	componentWillUnmount() : common.page.ui.Page {
+		$(this.store).off('change', this.onChange);
 		return this;
 	}
 
@@ -67,6 +71,17 @@ export class Page extends React.Component {
 	}
 
 	/**
+	*	Change Handler
+	*	@public
+	*	@method onChange
+	*	@return
+	**/
+	onChange() : common.page.ui.Page {
+		this.setState(this.store.state);
+		return this;
+	}
+
+	/**
 	*	Retrieves Page content
 	*	@public
 	*	@property content
@@ -74,6 +89,26 @@ export class Page extends React.Component {
 	**/
 	get content(): Object {
 		return {};
+	}
+
+	/**
+	*	Retrieves Page Store
+	*	@public
+	*	@property store
+	*	@type Object
+	**/
+	get store(): Object {
+		return this._store;
+	}
+
+	/**
+	*	Retrieves Page Actions
+	*	@public
+	*	@property action
+	*	@type Object
+	**/
+	get action(): Object {
+		return this._action;
 	}
 
 	/**
